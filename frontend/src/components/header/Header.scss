@@ -1,0 +1,23 @@
+.header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: end;
+  padding: 20px;
+
+  &__button {
+    width: 10vw;
+    height: 10vw;
+    font-size: 10vw;
+    border: none;
+    cursor: pointer;
+    transition: 1.5s;
+    color: #e9d30a;
+    background-color: #ffffff00;
+  }
+
+  .dark &__button {
+    color: #ffffff;
+  }
+}
