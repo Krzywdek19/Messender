@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import "./AuthPage.scss";
+import { request, setAuthToken } from "../../helpers/AxiosHelper";
 
-export const AuthPage = () => {
+export const AuthPage = (props) => {
   const [loginIsActive, setLoginIsActive] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,13 +20,50 @@ export const AuthPage = () => {
     setLastName("");
   };
 
+  const onLogin = (ev, email, password) => {
+    ev.preventDefault();
+    request("POST", "/login", { email: email, password: password }).then(
+      (response) => {
+        setAuthToken(response.data.token);
+        console.log("sadas");
+        props.setAuth(true);
+      }
+    );
+  };
+
+  const onRegister = (
+    ev,
+    email,
+    password,
+    confirmPassword,
+    name,
+    lastName,
+    birthDate
+  ) => {
+    ev.preventDefault();
+    request("POST", "/register", {
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword,
+      name: name,
+      lastName: lastName,
+      birthDate: birthDate,
+    }).then((response) => {
+      setAuthToken(response.data.token);
+      props.setAuth(true);
+    });
+  };
+
   useEffect(() => {
     console.log(email, password, confirmPassword, name, lastName, birthDate);
   }, [email, password, confirmPassword, name, lastName, birthDate]);
 
   return (
     <section className="form-wrapper">
-      <form action="" className={`form ${loginIsActive ? "" : "hidden"}`}>
+      <form
+        onSubmit={(ev) => onLogin(ev, email, password)}
+        className={`form ${loginIsActive ? "" : "hidden"}`}
+      >
         <input
           placeholder="email"
           name="email"
@@ -44,7 +82,20 @@ export const AuthPage = () => {
         <input type="submit" value="Login" className="form__submit" />
       </form>
 
-      <form action="" className={`form ${loginIsActive ? "hidden" : ""}`}>
+      <form
+        onSubmit={(ev) =>
+          onRegister(
+            ev,
+            email,
+            password,
+            confirmPassword,
+            name,
+            lastName,
+            birthDate
+          )
+        }
+        className={`form ${loginIsActive ? "hidden" : ""}`}
+      >
         <input
           placeholder="email"
           value={email}
