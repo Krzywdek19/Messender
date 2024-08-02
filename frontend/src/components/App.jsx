@@ -5,12 +5,12 @@ import { Main } from "./main/Main";
 
 export const App = () => {
   const [darkTheme, setDarkTheme] = useState(false);
-  const auth = false;
+  const [auth, setAuth] = useState(false);
 
   return (
     <div className={`container${darkTheme ? " dark" : ""}`}>
       <Header darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
-      <Main auth={auth} />
+      <Main setAuth={setAuth} auth={auth} />
     </div>
   );
 };
