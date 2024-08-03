@@ -8,7 +8,7 @@ import com.krzywdek19.messender.user.dto.UserDto;
 import com.krzywdek19.messender.user.service.UserService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;

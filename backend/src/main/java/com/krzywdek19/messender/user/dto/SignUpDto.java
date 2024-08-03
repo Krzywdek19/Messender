@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Data
 public class SignUpDto {
     private long id;
-    private String firstName;
+    private String name;
     private String lastName;
     private char[] password;
     private char[] confirmPassword;

@@ -1,0 +1,24 @@
+.people-card {
+  width: 80%;
+  height: 70px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  font-size: 20px;
+  background-color: #ddb2c6;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+  align-items: center;
+
+  &__btn {
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #37cf58;
+    font-weight: 800;
+    border-radius: 15px;
+    border: 2px solid var(--success-color);
+  }
+}

@@ -1,5 +1,6 @@
 package com.krzywdek19.messender.user;
 
+import com.krzywdek19.messender.user.friendRequest.FriendRequest;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -7,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -29,7 +31,17 @@ public class User implements UserDetails {
     private LocalDate birthDate;
     @Enumerated(value = EnumType.STRING)
     private Role role;
-
+    @ManyToMany
+    @JoinTable(
+            name = "user_user",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "friend_id")
+    )
+    private List<User> friends = new ArrayList<>();
+    @OneToMany(mappedBy = "receiver")
+    private List<FriendRequest> receivedRequests = new ArrayList<>();
+    @OneToMany(mappedBy = "sender")
+    private List<FriendRequest> sentRequests = new ArrayList<>();
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

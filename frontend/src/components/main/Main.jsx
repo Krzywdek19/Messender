@@ -15,7 +15,7 @@ export const Main = (props) => {
   return (
     <main className="main">
       {props.auth ? (
-        <Content setAuth={props.setAuth} auth={props.auth} />
+        <Content />
       ) : (
         <AuthPage setAuth={props.setAuth} auth={props.auth} />
       )}

@@ -17,7 +17,7 @@ import java.util.Arrays;
 public class WebConfig {
 
     @Bean
-    public FilterRegistrationBean corsFilter(){
+    public FilterRegistrationBean filterRegistrationBean(){
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
