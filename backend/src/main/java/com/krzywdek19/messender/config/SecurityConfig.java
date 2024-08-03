@@ -24,6 +24,7 @@ public class SecurityConfig {
                 .csrf(configurer -> configurer.disable())
                 .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((requests -> requests
+                        .requestMatchers("/console/**").permitAll()
                         .requestMatchers(HttpMethod.POST,"login","register").permitAll()
                         .anyRequest().authenticated()))
                 .build();
